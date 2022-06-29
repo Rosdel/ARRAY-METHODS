@@ -107,3 +107,18 @@ console.log(movementToUsd);
 const movementsToUsdfor = [];
 for (const mov of movements) movementsToUsdfor.push(mov * euroToUsd);
 console.log(movementsToUsdfor);
+
+const movementsDescription = movements.map(
+  (mov, i, arr) =>
+    // if (mov > 0) {
+    `movement ${1 + i}:you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+
+//   return `movement ${1 + i}:you deposited ${mov}`;
+// } else {
+//   return `movement ${1 + i}:you withdrew ${Math.abs(mov)}`;
+// }
+// );
+console.log(movementsDescription);
