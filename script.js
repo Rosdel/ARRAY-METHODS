@@ -95,8 +95,15 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 const euroToUsd = 1.1;
 
-const movementToUsd = movements.map(function (mov) {
-  return mov * euroToUsd;
-});
+// const movementToUsd = movements.map(function (mov) {
+//   return mov * euroToUsd;
+// });
+const movementToUsd = movements.map(mov => mov * euroToUsd); //this is the same as the commented function
+
 console.log(movements);
 console.log(movementToUsd);
+
+///for of   just for fun
+const movementsToUsdfor = [];
+for (const mov of movements) movementsToUsdfor.push(mov * euroToUsd);
+console.log(movementsToUsdfor);
