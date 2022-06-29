@@ -109,7 +109,7 @@ for (const mov of movements) movementsToUsdfor.push(mov * euroToUsd);
 console.log(movementsToUsdfor);
 
 const movementsDescription = movements.map(
-  (mov, i, arr) =>
+  (mov, i) =>
     // if (mov > 0) {
     `movement ${1 + i}:you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
       mov
