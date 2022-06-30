@@ -79,46 +79,72 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-console.log(displayMovements(account1.movements));
+const createUserName = function (accts) {
+  accts.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUserName(accounts);
+console.log(accounts);
+
+// const user = 'Steven Thomas Williams';
+
+// console.log(displayMovements(account1.movements));
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
 
-/////////////////////////////////////////////////
+const balance = movements.reduce(function (acc, cuurr, i, arr) {
+  return acc + cuurr;
+}, 0);
+console.log(balance);
 const euroToUsd = 1.1;
 
-// const movementToUsd = movements.map(function (mov) {
-//   return mov * euroToUsd;
-// });
-const movementToUsd = movements.map(mov => mov * euroToUsd); //this is the same as the commented function
+const totaldepositUsd = movements
+  .filter(mov => mov < 0)
+  .map((mov, i, arr) => mov * euroToUsd)
+  .reduce((mov, curr) => curr + mov, 0);
+console.log(totaldepositUsd);
+/////////////////////////////////////////////////
+// const euroToUsd = 1.1;
 
-console.log(movements);
-console.log(movementToUsd);
+// // const movementToUsd = movements.map(function (mov) {
+// //   return mov * euroToUsd;
+// // });
+// const movementToUsd = movements.map(mov => mov * euroToUsd); //this is the same as the commented function
 
-///for of   just for fun
-const movementsToUsdfor = [];
-for (const mov of movements) movementsToUsdfor.push(mov * euroToUsd);
-console.log(movementsToUsdfor);
+// console.log(movements);
+// console.log(movementToUsd);
 
-const movementsDescription = movements.map(
-  (mov, i) =>
-    // if (mov > 0) {
-    `movement ${1 + i}:you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
-      mov
-    )}`
-);
+// ///for of   just for fun
+// const movementsToUsdfor = [];
+// for (const mov of movements) movementsToUsdfor.push(mov * euroToUsd);
+// console.log(movementsToUsdfor);
+
+// const movementsDescription = movements.map(
+//   (mov, i) =>
+//     // if (mov > 0) {
+// `movement ${1 + i}:you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//       mov
+//     )}`
+// );
 
 //   return `movement ${1 + i}:you deposited ${mov}`;
 // } else {
 //   return `movement ${1 + i}:you withdrew ${Math.abs(mov)}`;
 // }
 // );
-console.log(movementsDescription);
+// console.log(movementsDescription);
